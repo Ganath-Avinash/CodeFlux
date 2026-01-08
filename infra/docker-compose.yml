@@ -1,0 +1,7 @@
+services:
+  my-website:
+    build: .
+    ports:
+      - "8080:3000"  # You will visit http://localhost:8080
+    volumes:
+      - .:/site      # This syncs your code changes instantly

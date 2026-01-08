@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - CareBell</title>
+    <link rel="icon" href="new.jpeg" >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="header">
+                <h1> My Profile</h1>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                <a href="wellness.html" class="nav-btn">Daily Tracking</a>
+                <a href="appointments.html" class="nav-btn">Appointments</a>
+                <a href="history.html" class="nav-btn">Health History</a>
+                <a href="profile.html" class="nav-btn active">Profile</a>
+            </div>
+
+            <div class="form-section">
+                <h2> Basic Information</h2>
+                <form id="profileForm" onsubmit="saveProfile(event)">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input type="text" id="fullName" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email:</label>
+                        <input type="email" id="email" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Birth:</label>
+                        <input type="date" id="dateOfBirth">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Gender:</label>
+                        <select id="gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not-to-say">Prefer not to say</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Blood Type:</label>
+                        <select id="bloodType">
+                            <option value="">Select</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Height (cm):</label>
+                        <input type="number" id="height" placeholder="170">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Weight (kg):</label>
+                        <input type="number" id="weight" placeholder="70">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save Profile</button>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h2>Medical Information</h2>
+                <form id="medicalForm" onsubmit="saveMedicalInfo(event)">
+                    <div class="form-group">
+                        <label>Known Allergies:</label>
+                        <textarea id="allergies" placeholder="e.g., Penicillin, Peanuts"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Current Medications:</label>
+                        <textarea id="medications" placeholder="List any medications you're currently taking"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Chronic Conditions:</label>
+                        <textarea id="conditions" placeholder="e.g., Diabetes, Asthma"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Emergency Contact Name:</label>
+                        <input type="text" id="emergencyName" placeholder="Jane Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Emergency Contact Phone:</label>
+                        <input type="tel" id="emergencyPhone" placeholder="+1234567890">
+                    </div>
+
+                    <button type="submit" class="btn-primary">Save Medical Info</button>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h2>Set Preventive Care Reminders</h2>
+                <form id="reminderForm" onsubmit="addReminder(event)">
+                    <div class="form-group">
+                        <label>Reminder Type:</label>
+                        <select id="reminderType" required>
+                            <option value="">Select type</option>
+                            <option value="Annual Checkup">Annual Checkup</option>
+                            <option value="Dental Cleaning">Dental Cleaning</option>
+                            <option value="Eye Exam">Eye Exam</option>
+                            <option value="Vaccination">Vaccination</option>
+                            <option value="Mammogram">Mammogram</option>
+                            <option value="Blood Test">Blood Test</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Due Date:</label>
+                        <input type="date" id="reminderDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes:</label>
+                        <textarea id="reminderNotes" placeholder="Additional details"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Add Reminder</button>
+                </form>
+
+                <div style="margin-top: 20px;">
+                    <h3>Active Reminders</h3>
+                    <div id="remindersList">
+                        <p>Loading...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Account Settings</h2>
+                <button onclick="changePassword()" class="btn-primary" style="width: auto; padding: 12px 30px;">
+                    Change Password
+                </button>
+                <button onclick="deleteAccount()" class="btn-delete" style="margin-left: 10px; padding: 12px 30px;">
+                    Delete Account
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

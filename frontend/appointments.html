@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments - CareBell</title>
+    <link rel="icon" href="new.jpeg" >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="header">
+                <h1>Appointments</h1>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                <a href="wellness.html" class="nav-btn">Daily Tracking</a>
+                <a href="appointments.html" class="nav-btn active">Appointments</a>
+                <a href="history.html" class="nav-btn">Health History</a>
+                <a href="profile.html" class="nav-btn">Profile</a>
+            </div>
+
+            <div class="form-section">
+                <h2>Schedule New Appointment</h2>
+                <form id="appointmentForm" onsubmit="saveAppointment(event)">
+                    <div class="form-group">
+                        <label>Doctor/Specialist Name:</label>
+                        <input type="text" id="doctorName" placeholder="Dr. Smith" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Appointment Type:</label>
+                        <select id="appointmentType" required>
+                            <option value="">Select type</option>
+                            <option value="General Checkup">General Checkup</option>
+                            <option value="Dental">Dental</option>
+                            <option value="Specialist">Specialist</option>
+                            <option value="Lab Test">Lab Test</option>
+                            <option value="Vaccination">Vaccination</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date:</label>
+                        <input type="date" id="appointmentDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Time:</label>
+                        <input type="time" id="appointmentTime" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Location/Clinic:</label>
+                        <input type="text" id="location" placeholder="City Hospital" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes:</label>
+                        <textarea id="appointmentNotes" placeholder="Any preparation needed, symptoms to discuss, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Schedule Appointment</button>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h2>Upcoming Appointments</h2>
+                <div id="upcomingAppointments">
+                    <p>Loading...</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>✅ Past Appointments</h2>
+                <div id="pastAppointments">
+                    <p>Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK --> 
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/appointments.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CareBell</title>
+    <link rel="icon" href="new.jpeg" >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="header">
+                <div>
+                    <h1>CareBell Dashboard</h1>
+                    <p id="welcomeMessage">Welcome Back !</p>
+                </div>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-btn active">Dashboard</a>
+                <a href="wellness.html" class="nav-btn">Daily Tracking</a>
+                <a href="appointments.html" class="nav-btn">Appointments</a>
+                <a href="history.html" class="nav-btn">Health History</a>
+                <a href="profile.html" class="nav-btn">Profile</a>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3>Wellness Score</h3>
+                    <div class="value" id="wellnessScore">--</div>
+                    <div class="label">Based on last 7 days</div>
+                </div>
+                <div class="card">
+                    <h3>Upcoming Appointments</h3>
+                    <div class="value" id="upcomingCount">--</div>
+                    <div class="label">Next 30 days</div>
+                </div>
+                <div class="card">
+                    <h3>Hydration Streak</h3>
+                    <div class="value" id="hydrationStreak">--</div>
+                    <div class="label">Days in a row</div>
+                </div>
+                <div class="card">
+                    <h3>Mood Average</h3>
+                    <div class="value" id="moodAverage">--</div>
+                    <div class="label">This week</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h2>Weekly Wellness Trends</h2>
+                <canvas id="wellnessChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="form-section">
+                <h2>Preventive Care Reminders</h2>
+                <div id="remindersList">
+                    <p>Loading reminders...</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Today's Quick Log</h2>
+                <button onclick="window.location.href='wellness.html'" class="btn-primary">
+                    Log Today's Wellness Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

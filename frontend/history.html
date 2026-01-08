@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health History - CareBell</title>
+    <link rel="icon" href="new.jpeg" >
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="header">
+                <h1>Health History</h1>
+                <button onclick="logout()" class="btn-logout">Logout</button>
+            </div>
+
+            <div class="nav-menu">
+                <a href="dashboard.html" class="nav-btn">Dashboard</a>
+                <a href="wellness.html" class="nav-btn">Daily Tracking</a>
+                <a href="appointments.html" class="nav-btn">Appointments</a>
+                <a href="history.html" class="nav-btn active">Health History</a>
+                <a href="profile.html" class="nav-btn">Profile</a>
+            </div>
+
+            <div class="form-section">
+                <h2>Upload Health Document</h2>
+                <p style="color: #6666; margin-bottom: 15px;">
+                    Upload lab reports, prescriptions, medical records, or any health-related documents
+                </p>
+                
+                <form id="documentForm" onsubmit="uploadDocument(event)">
+                    <div class="form-group">
+                        <label>Document Title:</label>
+                        <input type="text" id="docTitle" placeholder="e.g., Blood Test Results - Jan 2026" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Document Type:</label>
+                        <select id="docType" required>
+                            <option value="">Select type</option>
+                            <option value="Lab Report">Lab Report</option>
+                            <option value="Prescription">Prescription</option>
+                            <option value="Medical Record">Medical Record</option>
+                            <option value="X-Ray/Scan">X-Ray/Scan</option>
+                            <option value="Vaccination Record">Vaccination Record</option>
+                            <option value="Insurance">Insurance Document</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Date of Document:</label>
+                        <input type="date" id="docDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Doctor/Provider:</label>
+                        <input type="text" id="docProvider" placeholder="Dr. Smith / City Hospital">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Upload File (PDF, JPG, PNG):</label>
+                        <input type="file" id="docFile" accept=".pdf,.jpg,.jpeg,.png" required>
+                        <small style="color: #6666;">Note: Files are stored as base64 (simplified version)</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Notes:</label>
+                        <textarea id="docNotes" placeholder="Key findings, follow-up needed, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-primary">Upload Document</button>
+                </form>
+            </div>
+
+            <div class="form-section">
+                <h2>Document Library</h2>
+                
+                <div style="margin-bottom: 20px;">
+                    <label>Filter by Type:</label>
+                    <select id="filterType" onchange="filterDocuments()" style="padding: 10px; margin-left: 10px;">
+                        <option value="all">All Documents</option>
+                        <option value="Lab Report">Lab Reports</option>
+                        <option value="Prescription">Prescriptions</option>
+                        <option value="Medical Record">Medical Records</option>
+                        <option value="X-Ray/Scan">X-Rays/Scans</option>
+                        <option value="Vaccination Record">Vaccination Records</option>
+                        <option value="Insurance">Insurance</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div id="documentsGrid">
+                    <p>Loading documents...</p>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2>Health Timeline</h2>
+                <p style="color: #6666; margin-bottom: 15px;">
+                    A chronological view of your health events
+                </p>
+                <div id="healthTimeline">
+                    <p>Loading timeline...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Your Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/history.js"></script>
+</body>
+</html>

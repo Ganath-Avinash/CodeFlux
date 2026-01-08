@@ -1,0 +1,17 @@
+# We use Node just as a engine to run a simple web server
+FROM node:18-alpine
+
+# Install 'serve' - a fast tool for serving static websites
+RUN npm install -g serve
+
+# Create the folder where the website lives inside Docker
+WORKDIR /site
+
+# Copy all your HTML, CSS, JS, and images into that folder
+COPY . .
+
+# Expose port 3000 to see the website
+EXPOSE 3000
+
+# Run the server
+CMD ["serve", "-p", "3000"]
